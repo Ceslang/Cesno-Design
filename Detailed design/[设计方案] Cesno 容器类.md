@@ -12,50 +12,58 @@
 容器是什么
 ================
 
-# 数组
+# 单纯容器类
+
+**单纯容器类**(Simple Container Class)是Cesno语义层面上最小的容器类构成。单纯容器类可被继承或包含，用于制作更加复杂的结构。
+
+## 数组
 
 数组(Array，类名为`array`)
 
-# 列表
+## 列表
 
 列表(List，类名为`list`)
 
-# 元组
+## 元组
 
 元组(Tuple，类名为`tuple`)
 
-# 字典
+## 字典
 
 字典(Dictionary，类名为`dict`)
 
-# 链表
+## 集合
+
+集合(Set，类名为`set`)
+
+## 链表
 
 链表(Chain或Chained List，类名为`chain`)
 
-# 队列
+## 队列
 
 队列(Queue，类名为`queue`)
 
-# 双向队列
-
-双向队列(Double entry queue，类名为 `deque`)
-
-# 优先队列
-
-优先队列(Priority queue，类名为 `priority_queue`)按照权值对元素进行排列。
-
-# 序列
+## 序列
 
 序列(Sequence，类名为`sequence`)是一段连续的内存空间。
 
-# 堆
+## 堆
 
-堆(Heap，类名为 `heap`)
+堆(Heap，类名为`heap`)
 
-# 集合
+## 栈
 
-集合(Set，类名为 `set`)
+栈(Stack，类名为`stack`)
 
-# 栈
+# 复杂容器类
 
-栈(Stack，类名为 `stack`)
+**复杂容器类**(Complex Container Class)是**继承**或**包含**单纯容器类的容器类。相比于单纯容器类，它们提供了更多的功能。
+
+## 双向队列
+
+双向队列(Double Entry Queue，类名为 `Deque`)
+
+## 优先队列
+
+优先队列(Priority Queue，类名为 `PriorityQueue`)按照权值对元素进行排列。
