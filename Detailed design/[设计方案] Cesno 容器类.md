@@ -36,6 +36,26 @@
 
 队列(Queue，类名为`queue`)
 
+# 双向队列
+
+双向队列(Double entry queue，类名为 `deque`)
+
+# 优先队列
+
+优先队列(Priority queue，类名为 `priority_queue`)按照权值对元素进行排列。
+
 # 序列
 
 序列(Sequence，类名为`sequence`)是一段连续的内存空间。
+
+# 堆
+
+堆(Heap，类名为 `heap`)
+
+# 集合
+
+集合(Set，类名为 `set`)
+
+# 栈
+
+栈(Stack，类名为 `stack`)
