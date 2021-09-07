@@ -14,7 +14,7 @@
 
 # 单纯容器类
 
-**单纯容器类**(Simple Container Class)是Cesno语义层面上最小的容器类构成。单纯容器类可被继承或包含，用于制作更加复杂的结构。
+**单纯容器类**(Simple Container Class)是Cesno语义层面上最小的容器类构成。单纯容器类可被**继承**或包含，用于制作更加复杂的结构。
 
 ## 数组
 
@@ -36,9 +36,11 @@
 
 集合(Set，类名为`set`)
 
-## 链表
 
-链表(Chain或Chained List，类名为`chain`)
+
+# 复杂容器类
+
+**复杂容器类**(Complex Container Class)是**继承**或**包含**单纯容器类的容器类。相比于单纯容器类，它们提供了更多的功能。
 
 ## 队列
 
@@ -54,16 +56,23 @@
 
 ## 栈
 
-栈(Stack，类名为`stack`)
+栈(Stack，类名为`stack`)链表
 
-# 复杂容器类
+## 链表
 
-**复杂容器类**(Complex Container Class)是**继承**或**包含**单纯容器类的容器类。相比于单纯容器类，它们提供了更多的功能。
+链表(Chain或Chained List，类名为`chain`)
 
 ## 双向队列
 
-双向队列(Double Entry Queue，类名为 `Deque`)
+双向队列(Double Entry Queue，类名为`deque`)
 
 ## 优先队列
 
-优先队列(Priority Queue，类名为 `PriorityQueue`)按照权值对元素进行排列。
+优先队列(Priority Queue，类名为`prique`)按照权值对元素进行排列。
+
+
+
+# 抽象容器
+
+所有的容器都继承自抽象类`container`。
+

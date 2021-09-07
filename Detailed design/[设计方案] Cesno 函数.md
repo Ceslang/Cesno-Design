@@ -94,3 +94,6 @@ Detailed Report for ParamStateError:
         Change the input value.
 ```
 
+# 函数做参数
+
+因为函数也是一种
