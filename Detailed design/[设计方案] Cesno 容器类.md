@@ -56,7 +56,7 @@
 
 ## 栈
 
-栈(Stack，类名为`stack`)链表
+栈(Stack，类名为`stack`)
 
 ## 链表
 
