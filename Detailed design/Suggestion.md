@@ -34,7 +34,7 @@
 
    
 
-6. 人性化计划 更多的比较器`comparator`。==好好想一想==
+6. 人性化计划 更多的比较器`comparator`。==think again==
 
    给出排序函数`sort(obj, method=#quick)`。
 
@@ -52,5 +52,9 @@ function number add(number a, number b) { return a + b; }
 
 function<(number, number), number> add = (number a, number b) -> { return a + b; };
 function add = (number a, number b) -> { return a + b; };
+function<(number, number), number> add = (a, b) -> { return a + b; };
 ```
 
+
+
+9. 函数参数那一块==歧义==太多了。**重载**和**参数限制并用**不好好设计就会有bug。==think again==
