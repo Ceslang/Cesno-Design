@@ -24,9 +24,9 @@
 
 ## print函数
 
-**用途**: 将指定到`objs`的任意类型的参数，输出至指定标准输出流。这个函数通常被用作 *在控制台显示文本*。
+**用途**: 将指定到`objs`的任意类型的参数，输出至指定标准输出流。这个函数通常被用作*在控制台显示文本*。
 
-**函数签名**: `void print(any... objs, ostream target=stdout, string sep=" ", string end="\n")`
+**函数签名**: `function void print(any... objs, ostream target=stdout, string sep=" ", string end="\n")`
 
 **参数列表**: 
 
