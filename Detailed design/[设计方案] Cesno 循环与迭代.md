@@ -48,7 +48,7 @@ for (int a = 0; a < 10; i++) (float b = 0; b < 5; b++)
 }
 
 // #也可以这样声明两个计数器用于 for 循环
-for (int a, b = 0, 0; a < 3 && b < 5; a++, b++)
+for (int a, b = 0, 0; a < 3 and b < 5; a++, b++)
 {
     print(a, b);
 }
@@ -65,7 +65,7 @@ for (int a, b = 0, 0; a < 3 && b < 5; a++, b++)
 Cesno预先定义了一些可迭代元素，比如`array`、 `list`、`tuple`等。案例如下:
 
 ```typescript
-for (any a : [1, 2, 3])
+for (var a in [1, 2, 3])
 {
     print(a);
 }

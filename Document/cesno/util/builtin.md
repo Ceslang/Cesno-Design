@@ -57,6 +57,10 @@ print(2 ^ 16 - 1, target=ostream(file("./test.txt", mode=#write)));
 
 
 
+## sort函数
+
+
+
 ## exit函数
 
 **用途**: 终止程序执行。

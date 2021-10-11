@@ -50,11 +50,11 @@
 
 **注意**: 这里的`reduce`并不是“减少”的意思，而是编程中的“归约”操作。如果你想要寻找 *缩减数组长度* 的“切片”操作，请移步[`slice`方法](#slice方法)。
 
-**函数签名**: `method <FuncRetType> FuncRetType reduce(function<(EleType or FuncRetType, EleType), FuncRetType> reducer)`
+**函数签名**: `method <FuncRetType> FuncRetType reduce(function<(EleType|FuncRetType, EleType), FuncRetType> reducer)`
 
 **参数列表**:
 
-* `reducer`: `function<(EleType or FuncRetType, EleType), FuncRetType>`
+* `reducer`: `function<(EleType|FuncRetType, EleType), FuncRetType>`
 
 接受一个操作，用于归约地(依次地)应用于数组的每个元素。这个操作**必须接受**两个类型为`EleType`或`FuncRetType`的参数，并且返回一个类型为`FuncRetType`的参数
 
@@ -95,25 +95,27 @@ print(["1", "2", "4"].map(int.constructor).sum())    // 输出 7
 
 **重载**:
 
-1. `array<EleType> add(self, array<EleType>)`
+1. `+ array<EleType>` returns `array<EleType>`
 
-**右操作对象**: 存储同样类型的数组`array<EleType>`。
+   **右操作对象**: 存储同样类型的数组`array<EleType>`。
 
-**返回类型**: `array<EleType>`
+   **返回类型**: `array<EleType>`
 
 2. `array<any> add(array<any>)`
 
-**右操作对象**: 被标记为动态类型的数组`array<any>`。
+   **右操作对象**: 被标记为动态类型的数组`array<any>`。
 
-**返回类型**: `array<any>`
+   **返回类型**: `array<any>`
 
 ## `-`运算符
 
-**用途**: 删去前一个数组中的，出现在后一个数组中的值。
+**用途**: 删去前一个数组中的，出现在后一个数组中的值。类似于数学中的**集合减法**。
+
+
 
 ## `*`运算符
 
-**用途**: 
+**用途**: 用于重复数组的元素，并
 
 ## `&`运算符
 
@@ -123,7 +125,7 @@ print(["1", "2", "4"].map(int.constructor).sum())    // 输出 7
 
 **用途**:
 
-## `[]`运算符
+## `[]`运算符 ==可修改原实例==
 
 <span id="operator_bracket"></span>
 
@@ -131,3 +133,16 @@ print(["1", "2", "4"].map(int.constructor).sum())    // 输出 7
 
 **参照**: 可以把**`[]`运算符**视作[`slice`方法](#slice方法)的语法糖。
 
+**注意**: 通常下标从0开始计数，但如果你更改了显示设置，请注意所填写的下标是否正确。
+
+**重载**:
+
+1. `[int n]` returns `ref EleType`
+
+   从数组中以下标形式，取出第n个特定的元素的地址。比如从`x`数组中取出第二个元素，就可以书写成`x[2]`。
+
+2. `[range r]` returns `array<EleType>`
+
+   从数组中以下标形式，取出代表这一段的地址。比如从`x`数组中取出从第一个(包含)到第三个(不含)元素，就可以这样书写`x[1..3]`。
+
+3. `[any... args: int|range]` returns `array<EleType>`

@@ -14,7 +14,7 @@
 
 ## 函数是什么
 
-
+和大多数编程语言相同，**函数**是既定的，一系列命令、动作的集合体。它既可以处理一些数据，让这些数据变成你希望的样子；又可以包装一串命令，让你可以更短地书写它们……
 
 ## 函数的定义
 
@@ -48,6 +48,21 @@ function<(number, number), number> add = (x, y) => { return x + y; };
 ## 参数是什么
 
 **参数**可以看作一个函数的**接入点**。参数**接收**了对应位置的数据，并**传递**给函数来处理。
+
+
+
+# 匿名函数
+
+
+
+# 函数做参数
+
+因为函数也是一种
+
+
+
+
+# 参数高级技巧
 
 ## 默认参数
 
@@ -131,12 +146,3 @@ Detailed Report for ParamStateError:
         try: replace line 1 at test.main() to the following statement:
             my_sqrt(double(input("Input one x (double) that satisfy \"x >= 0\" ")));
 ```
-
-# 匿名函数
-
-
-
-# 函数做参数
-
-因为函数也是一种
-
