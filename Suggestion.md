@@ -8,7 +8,7 @@
 
    * 方法: `SomeClassInstance.ptr`。
 
-     
+
 
 2. 如何在不区分**基础类型**和**引用类型**的前提下，让`int`、`float`等高效率。==to be discussed==
 
@@ -26,13 +26,13 @@
        enum method {quick(algo.sortQuick), barrel(algo.sortBarrel)};
        obj = method(obj);
    }
-   
+
    function file open(string path, #mode...) // 只支持了使用内部的enum
-   
+
    open("path", mode=(binary, append))
    ```
 
-   
+
 
 6. 人性化计划 更多的比较器`comparator`。==think again==
 
@@ -58,8 +58,29 @@ function<(number, number), number> add = (a, b) -> { return a + b; };
 
 
 9. 函数参数那一块==歧义==太多了。**重载**和**参数限制并用**不好好设计就会有bug。==think again==
-10. 方法调用限制: 某些方法在该对象满足特定条件时才可以被调用
-    1. 优点: 使滥用`object`类型的现象更少
+10. 方法调用限制: 某些方法在该对象满足特定条件时才可以被调用 ==(Woking)==
+    1. 优点: 使滥用`object`类型创建方法的现象更少
     2. 缺点: 对动态类型支持较差
+11. 容器方面大括号中括号小括号满天飞，容易给用户造成困扰。==本次讨论==
+    这里讨论的都是字面量，代码块除外。
+    * 小括号代表元组`tuple`。
+    * 中括号代表数组`array`。
+    * 大括号:
+      * 匿名对象`@{a: 10, b: "a"}`
+        * `class
+       { public int a; public string b }.constructor(10, "a")`
+      * 由逗号分割的项目(们): 集合`set`。
+      * 由逗号分割的项目，至少有一个有冒号: 辞典`dict`。
+      * 至少有一个是由分号分割的项目: 代码块`codeseg`。
+12. `a, b = b, a`问题 ==本次讨论==
 
-11. 容器方面大括号中括号小括号满天飞，容易给用户造成困扰。==放心，之后好好整改，争取规范括号的意思==
+`(a, b) = (date(), 1)`
+
+`(a, b) = (b, a)`
+
+`(b, a)` 算出来，整体赋值给 `(a, b)`
+
+`a, b = 1, 10`
+
+1.  Cesno形容 (支持多继承情况下的面向对象接口)。
+2.  加入复数、矩阵类型
