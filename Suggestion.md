@@ -26,9 +26,9 @@
        enum method {quick(algo.sortQuick), barrel(algo.sortBarrel)};
        obj = method(obj);
    }
-
+   
    function file open(string path, #mode...) // 只支持了使用内部的enum
-
+   
    open("path", mode=(binary, append))
    ```
 
@@ -58,21 +58,20 @@ function<(number, number), number> add = (a, b) -> { return a + b; };
 
 
 9. 函数参数那一块==歧义==太多了。**重载**和**参数限制并用**不好好设计就会有bug。==think again==
-10. 方法调用限制: 某些方法在该对象满足特定条件时才可以被调用 ==(Woking)==
+10. 方法调用限制: 某些方法在该对象满足特定条件时才可以被调用 ==(Working)==
     1. 优点: 使滥用`object`类型创建方法的现象更少
     2. 缺点: 对动态类型支持较差
-11. 容器方面大括号中括号小括号满天飞，容易给用户造成困扰。==本次讨论==
-    这里讨论的都是字面量，代码块除外。
+11. 容器方面大括号中括号小括号满天飞，容易给用户造成困扰。
+    这里讨论的都是**字面量**，代码块除外。
     * 小括号代表元组`tuple`。
     * 中括号代表数组`array`。
     * 大括号:
       * 匿名对象`@{a: 10, b: "a"}`
-        * `class
-       { public int a; public string b }.constructor(10, "a")`
-      * 由逗号分割的项目(们): 集合`set`。
-      * 由逗号分割的项目，至少有一个有冒号: 辞典`dict`。
-      * 至少有一个是由分号分割的项目: 代码块`codeseg`。
-12. `a, b = b, a`问题 ==本次讨论==
+        * `class { public int a; public string b }.constructor(10, "a")`
+      * 由**逗号分割**的项目(们): 集合`set`。
+      * 由**逗号分割**的项目，至少**有一个有冒号**: 辞典`dict`。如果有其它项没有冒号，会警告。
+      * 至少有一个是**由分号分割**的项目: 代码块`codeseg`。
+12. `a, b = b, a`问题
 
 `(a, b) = (date(), 1)`
 
@@ -82,5 +81,48 @@ function<(number, number), number> add = (a, b) -> { return a + b; };
 
 `a, b = 1, 10`
 
-1.  Cesno形容 (支持多继承情况下的面向对象接口)。
-2.  加入复数、矩阵类型
+13. Cesno形容 (支持多继承情况下的面向对象接口)。
+
+14. 加入复数、矩阵类型 ==(Working)==
+
+15. 运行时的对类(原型)修改 ==to be discussed==
+
+    目前想到的方案。默认是不可通过type来改(也可以提高一些可读性了)
+
+    1.  对所有类型变量`x`，`x.type`内的成员修改不可行。
+    2.  对标记为`volatile`的类型的变量`x`，`x.proto`(也可以写`x.class`)内的成员可以修改。
+    
+    ```c++
+    volatile class test
+    {
+        int x;
+    }
+    
+    test t = test();
+    t.x = 1;
+    ```
+     
+    
+    
+16. **参数直接变换**和**只接受修饰过的参数** ==Working==
+
+    对于函数`function any f(any a)`
+
+    1. 如果是类似`const any a`，则代表**接收到的参数会自动转为常数**。
+    2. 如果是类似`any const a`，则代表**只能接受常数**。
+    
+    使用例:
+    对于运算符重载
+
+
+    
+17. `function`加减法? `(f + g)`相当于`fucntion(x){ return f(x) + g(x); }`(`x -> f(x) + g(x)`)。 ==本次讨论==
+
+18. `this` `self`不同用法: `this`是当前环境，`self`是面向对象的“自身”。 ==本次讨论==
+
+19. 变更: `namespace`只可用在包含**声明**或**定义**中。用`codeseg`不加语言名来创建一个即用即扔的代码域。 ==本次讨论==
+
+20. 用户可以用类似于**友元函数**的方式修改一个官方的类，但是修改会被添加到“可能的错误列表”中。
+
+21. 匿名函数学习C++，可以指定**闭包**。
+

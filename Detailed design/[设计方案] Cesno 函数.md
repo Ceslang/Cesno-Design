@@ -107,7 +107,7 @@ function void printCryOf(Animal a: Cat|SmallDog)
 }
 ```
 
-这个例子
+这个例子说明了，接受的参数`a`作为`Animal`传入函数，但要么属于`Cat`类，要么属于`SmallDog`类。
 
 ### 形容限制子
 
@@ -119,7 +119,7 @@ function void printCryOf(Animal a: Cat|SmallDog)
 function double my_sqrt(double x: x>=0)
 {
     // Some statement
-    return sqrt_x;
+    return sqrt(x);
 }
 ```
 
