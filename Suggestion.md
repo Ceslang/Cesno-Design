@@ -8,8 +8,6 @@
 
    * 方法: `SomeClassInstance.ptr`。
 
-
-
 2. 如何在不区分**基础类型**和**引用类型**的前提下，让`int`、`float`等高效率。==to be discussed==
 
 3. 约等于比较: `~=`。用于提供宽松的比较机制。==(Working)==
@@ -17,7 +15,7 @@
    * 存在场景: 用户自定义，`object`中并不包括。
 
 4. 预定义属性。比如`globals`是一个存放了全局变量的词典，`a.datas`代表实例`a`所拥有的数据的字典(可能会有`undefined`值)。==to be discussed==
-
+ 
 5. 函数参数枚举: 避免用字符串传入参数，用`#`代表一个参数枚举 ==to be rectify==
 
    ```
@@ -47,11 +45,11 @@
 
 
 
-```
+```typescript
 function number add(number a, number b) { return a + b; }
 
 function<(number, number), number> add = (number a, number b) -> { return a + b; };
-function add = (number a, number b) -> { return a + b; };
+function add = (number a, number b) -> { return number(a + b); };
 function<(number, number), number> add = (a, b) -> { return a + b; };
 ```
 
@@ -101,7 +99,7 @@ function<(number, number), number> add = (a, b) -> { return a + b; };
     test t = test();
     t.x = 1;
     ```
-     
+    
     
     
 16. **参数直接变换**和**只接受修饰过的参数** ==Working==
@@ -114,15 +112,129 @@ function<(number, number), number> add = (a, b) -> { return a + b; };
     使用例:
     对于运算符重载
 
+17. `function`加减法? `(f + g)`相当于`fucntion(x){ return f(x) + g(x); }`(`x -> f(x) + g(x)`)。
 
-    
-17. `function`加减法? `(f + g)`相当于`fucntion(x){ return f(x) + g(x); }`(`x -> f(x) + g(x)`)。 ==本次讨论==
+18. 变更: `namespace`只可用在包含**声明**或**定义**中。用`codeseg`不加语言名来创建一个即用即扔的代码域。 ==Working==
 
-18. `this` `self`不同用法: `this`是当前环境，`self`是面向对象的“自身”。 ==本次讨论==
+```go
+func add(a int) int {
+    a = 1 + 1
+    return a
+}
+```
 
-19. 变更: `namespace`只可用在包含**声明**或**定义**中。用`codeseg`不加语言名来创建一个即用即扔的代码域。 ==本次讨论==
+```typescript
+module adder
+{
+    namespace std
+    {
+        function int add(int a)
+        {
+            a = 1 + 1
+            codeseg c++
+            {
+                cout << "1142857";
+            }
+            return a;//
+        }
+    }
+}
+```
+//namespace可以嵌套
+//gcc -S <xxx.cpp> ==> xxx.asm
+//
 
-20. 用户可以用类似于**友元函数**的方式修改一个官方的类，但是修改会被添加到“可能的错误列表”中。
+```c++
+int main()
+{
+    print(a+b);
+    namespace
+    {
+        // ...
+    }
 
-21. 匿名函数学习C++，可以指定**闭包**。
+}
+```
+
+19. 用户可以用类似于**友元函数**的方式修改一个官方的类，但是修改会被添加到“可能的错误列表”中。 ==本次讨论==
+
+```
+"helloworld" + 1234 + 1.1 + null + 'x';
+"helloworld" + str(1234) + str(1.1) + str(null) + str('x');  //py
+
+int a, b = 0, 0;
+a=a+b //会被解析到下面那种
+eval { ADD a, b }
+```
+
+```
+int a = 0;
+String b = "a";
+String c = str(a) + b;
+eval 
+{
+    register d, 3;
+    a+=30;
+    memory[0x1024] = a;
+    memory[0x1025] = 67;
+    put monitor memory[0x1024:0x1025]
+}
+
+
+operator+ (int right)
+{
+    eval {  }
+}
+```
+
+20. 匿名函数学习C++，可以指定**闭包**(翻译提案: 捕获)。 ==本次讨论==
+
+21. 赋值表达式会“返回”值。如果是`=`赋值，返回值；如果是`:=`赋值，返回创建变量的地址(相当于这个变量本身)。 ==本次讨论==
+
+提议：`:=` 用于复制地址
+
+```c++
+int a = 0;
+print(int b = a + 5);
+
+while ((int c := b) != 0)
+{
+    // Do something
+}
+
+1. a == a?
+2. a == b <=> b == a?
+3. a == b , b == c ==> a == c?
+满足这三个才叫相等吧;
+example : 
+a = "abc" , b = "ab"+"c"
+a != b
+a = #FFFFA b = #FFFFB 
+a == b? //java "aa" != "a"+"a"
+"aa".equals("aa") // true
+"aa" == "aa" ==> Object a.equals(Object b) // java
+
+// 近似相等(~=，大部分情况用户自己定义)/相等(值)/强相等(内存块是否为同一个)?
+0.09999999999999999999999 ~= 0.1000000000000001?
+
+int c = b;
+while (c != 0)
+{
+    c = random();
+    print("Run one time.");
+}
+```
+
+```c++
+int a = 10;
+int b := a;
+int b = a;
+b;
+a = 20;
+```
+
+
+23. 对于**修饰子**的摆放位置: 公共修饰子 特殊修饰子 声明或定义。其中，公共修饰子需要把**访问修饰子**放在最前。 ==本次讨论==
+
+    `public inline method int f(int x)`
 
