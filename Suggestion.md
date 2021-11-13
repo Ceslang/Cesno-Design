@@ -15,7 +15,7 @@
    * 存在场景: 用户自定义，`object`中并不包括。
 
 4. 预定义属性。比如`globals`是一个存放了全局变量的词典，`a.datas`代表实例`a`所拥有的数据的字典(可能会有`undefined`值)。==to be discussed==
- 
+
 5. 函数参数枚举: 避免用字符串传入参数，用`#`代表一个参数枚举 ==to be rectify==
 
    ```
@@ -202,11 +202,11 @@ while ((int c := b) != 0)
     // Do something
 }
 
-1. a == a?
-2. a == b <=> b == a?
-3. a == b , b == c ==> a == c?
-满足这三个才叫相等吧;
-example : 
+// 1. a == a?
+// 2. a == b <=> b == a?
+// 3. a == b , b == c ==> a == c?
+// 满足这三个才叫相等吧;
+// example : 
 a = "abc" , b = "ab"+"c"
 a != b
 a = #FFFFA b = #FFFFB 

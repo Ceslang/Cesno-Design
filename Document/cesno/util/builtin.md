@@ -4,9 +4,9 @@
 
 `builtin`模块是Cesno中的内置模块，被每一个Cesno代码文件默认地引入全局命名空间，可以无需额外操作立即使用。该模块提供了编程中最为常用的函数，旨在为编程者书写程序提供便利。
 
-**修饰子**: `public module `。
+**修饰子**: `public module `
 
-**本文件适用的版本**: `in-design`。
+**本文件适用的版本**: `in-design`
 
 # 常数列表
 
@@ -20,9 +20,29 @@
 * `iostream stdio = runtime.env.io_stream`
 * `ostream stderr = runtime.env.error_output`
 
+
+
+# 类型列表
+
+## `int`
+
+## `float`
+
+## `bool`
+
+## `char`
+
+## `string`
+
+## `object`
+
+
+
+
+
 # 函数列表
 
-## print函数
+## `print`函数
 
 **用途**: 将指定到`objs`的任意类型的参数，输出至指定标准输出流。这个函数通常被用作*在控制台显示文本*。
 
@@ -57,11 +77,11 @@ print(2 ^ 16 - 1, target=ostream(file("./test.txt", mode=#write)));
 
 
 
-## sort函数
+## `sort`函数
 
 
 
-## exit函数
+## `exit`函数
 
 **用途**: 终止程序执行。
 
