@@ -13,4 +13,24 @@
 
 * 给Cesno加入一个`template`文件夹，方便用户复制再加工。
 * 进行乘除算(或其他可能的运算)2次幂数时，自动转为**位运算**。
+* 自带的教程以及使用帮助。当按下某个按键组合后，可以打开对话框，让用户根据条件，选择合适的代码部件(比如该选择哪一种容器)。
+* 允许使用@overload文档注释，来省去大量重复文档注释。
+
+```typescript
+/**
+ * {@OverloadRoot 
+ *     Universal for all overload function doc.
+ * }
+ * Specific comment for this function.
+ */
+function void test() { }
+
+/** 
+ * {@OverloadDoc}
+ * Specific for this function. Different from {@link test()}
+ */
+function void test(int a) { }
+```
+
+
 

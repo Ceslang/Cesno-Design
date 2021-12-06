@@ -159,7 +159,7 @@ function void changeGlobalVarN()
     n = "Some string";
 }
 
-void main
+void main()
 {
     var n = 5;               // 在 main 中覆盖了全局 n 的声明，这个 n 是局部的
     Test t1 = new Test();    // 成员 member 是 10

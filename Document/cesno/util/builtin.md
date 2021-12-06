@@ -26,7 +26,15 @@
 
 ## `int`
 
+**简介**: 整数型，类似于C++或Java的`int`，长32位，范围为-2147483648至2147483647。
+
+**定义**: `type int = cesno.type.int<32>`
+
 ## `float`
+
+**简介**: 浮点型，类似于C++或Java的`double`，双精度。
+
+**定义**: `type float = cesno.type.float<64>`
 
 ## `bool`
 

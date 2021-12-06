@@ -16,15 +16,23 @@
 
 ## 构造器
 
+
+
 ## 函数
 
 ## `slice`方法
 
 **用途**: 将数组进行切片操作。即给定一段范围，返回原数组处在该范围内的一段。
 
-**参照**: 多数情况下，建议使用更为方便的[`[]`运算符](#operator_bracket)
+**参照**: 多数情况下，建议使用更为方便的[`[]`运算符](#operator_bracket)。
 
 **函数签名**: `method <RetContainerType> RetContainerType<EleType> slice(int start=0, int end, RetContainerType into: Container.type&into.type.constructor.check(MappedType)=self.type)`
+
+## `fill`方法 ==链式返回==
+
+**用途**: 将数组中一段区域填充指定值。如果指定一个可迭代容器，则循环地填充。
+
+**参照**: 多数情况下，建议使用更为方便的[`[]`运算符](#operator_bracket)。
 
 
 
@@ -32,19 +40,37 @@
 
 **用途**: 将该数组中的元素映射到新容器中。换句话说，就是采用某个转换器，对本数组每个元素做转换，再依次填入到新容器中。
 
-**函数签名**: `method <MappedType, RetContainerType> RetContainerType<MappedType> map(function<EleType, MappedType> mapper, RetContainerType into: Container.type&into.type.constructor.check(MappedType)=self.type)`
+**函数签名**: 
+``` c++
+method <MappedType, RetContainerType> RetContainerType<MappedType>
+map(function<EleType, MappedType> mapper, 
+    int from=0, int before=len(self),
+    RetContainerType into: Container.type&into.type.constructor.check(MappedType)=self.type)
+```
 
 **参数列表**: 
 
 * `mapper`: `function<EleType, MappedType> mapper`
 
-接受一个转换器，用于将每个元素转换成需要的内容。比如，如果要把每一个数据加上1，则`mapper`要这样书写: `x.map(e -> e + 1)`。
+​	接受一个转换器，用于将每个元素转换成需要的内容。比如，如果要把每一个数据加上1，则`mapper`要这样书写: `x.map(e -> e + 1)`。
+
+- `from`: 
 
 * `into`: `RetContainerType into: Container.type&into.type.constructor.check(MappedType)=self.type` ==默认参数==
 
-如果需要转换数据同时，改变数据保存到其他容器中，则这里需要提供一个新的类型。比如，如果想把映射过后的数组，转换成辞典型，则应该像这样写: `x.map(someActionWhichProduce2EleTuple, dict)`。
+​	如果需要转换数据同时，改变数据保存到其他容器中，则这里需要提供一个新的类型。比如，如果想把映射过后的数组，转换成辞典型，则应该像这样写: `x.map(someActionWhichProduce2EleTuple, dict)`。
 
 `into`存在两个限制。第一，它必须是一个属于`Container`的**类型**(不能是一个**实例**)。
+
+**示例**:
+
+```c++
+int[] a = [1, 2, 3];
+print(a.map(e -> e + 1));    // 输出 [2, 3, 4]
+print(a.map(e -> 2 * e, range()));    // 输出 [2, 3, 4]
+```
+
+
 
 ## `reduce`方法
 
@@ -69,7 +95,8 @@
 1. 将一个保存了`bool`类型的数组中，所有元素取`and`运算
 
 ```C++
-[true, false, true].reduce(operator::land)
+print([true, false, true].reduce(operator::and));    // 返回 false
+print(["1", "a", 4].reduce(operator::plus));         // 返回 "1a4"
 ```
 
 
@@ -97,13 +124,13 @@ print(["1", "2", "4"].map(int.constructor).sum())    // 输出 7
 
 **重载**:
 
-1. `+ array<EleType>` returns `array<EleType>`
+1. `self + array<EleType>` returns `array<EleType>`
 
    **右操作对象**: 存储同样类型的数组`array<EleType>`。
 
    **返回类型**: `array<EleType>`
 
-2. `array<any> add(array<any>)`
+2. `self + array<any>` returns `array<any>`
 
    **右操作对象**: 被标记为动态类型的数组`array<any>`。
 
@@ -117,11 +144,22 @@ print(["1", "2", "4"].map(int.constructor).sum())    // 输出 7
 
 ## `*`运算符
 
-**用途**: 用于重复数组的元素，并
+**用途**: 创造**重复前一个数组的元素**的新数组。
+
+**右操作对象**: 一个整数。`RightType extends int`。
+
+**示例**:
+
+```c++
+int[] a = [1, 2] * 3;
+print(a)    // 输出 [1, 2, 1, 2, 1, 2]
+```
+
+
 
 ## `&`运算符
 
-**用途**:
+**用途**: 
 
 ## `|`运算符
 
@@ -141,10 +179,11 @@ print(["1", "2", "4"].map(int.constructor).sum())    // 输出 7
 
 1. `[int n]` returns `ref EleType`
 
-   从数组中以下标形式，取出第n个特定的元素的地址。比如从`x`数组中取出第二个元素，就可以书写成`x[2]`。
+   从数组中以下标形式，取出第n个特定的元素。比如从`x`数组中取出第二个元素，就可以书写成`x[2]`。
 
-2. `[range r]` returns `array<EleType>`
+2. `[range r]` returns `array<ref EleType>`
 
-   从数组中以下标形式，取出代表这一段的地址。比如从`x`数组中取出从第一个(包含)到第三个(不含)元素，就可以这样书写`x[1..3]`。
+   从数组中以下标形式，取出特定范围的一段。比如从`x`数组中取出从第一个(包含)到第三个(不含)元素，就可以这样书写`x[1..3]`。
 
-3. `[any... args: int|range]` returns `array<EleType>`
+3. `[any... args: int|range]` returns `array<ref EleType>`
+

@@ -27,7 +27,7 @@
    
    function file open(string path, #mode...) // 只支持了使用内部的enum
    
-   open("path", mode=(binary, append))
+   open("path", mode=(#binary, #append))
    ```
 
 
@@ -117,7 +117,8 @@ function<(number, number), number> add = (a, b) -> { return a + b; };
 18. 变更: `namespace`只可用在包含**声明**或**定义**中。用`codeseg`不加语言名来创建一个即用即扔的代码域。 ==Working==
 
 ```go
-func add(a int) int {
+func add(a int) int
+{
     a = 1 + 1
     return a
 }
@@ -187,9 +188,9 @@ operator+ (int right)
 }
 ```
 
-20. 匿名函数学习C++，可以指定**闭包**(翻译提案: 捕获)。 ==本次讨论==
+20. 匿名函数学习C++，可以指定**闭包**(翻译提案: 捕获)。
 
-21. 赋值表达式会“返回”值。如果是`=`赋值，返回值；如果是`:=`赋值，返回创建变量的地址(相当于这个变量本身)。 ==本次讨论==
+21. 赋值表达式会“返回”值。如果是`=`赋值，返回值；如果是`:=`赋值，返回创建变量的地址(相当于这个变量本身)。
 
 提议：`:=` 用于复制地址
 
@@ -237,4 +238,47 @@ a = 20;
 23. 对于**修饰子**的摆放位置: 公共修饰子 特殊修饰子 声明或定义。其中，公共修饰子需要把**访问修饰子**放在最前。 ==本次讨论==
 
     `public inline method int f(int x)`
+    
+24. 引入命名空间。比如假设某个两个包的名字是`org.example.Pack1`和`org.example.Pack2`: ==本次讨论==
+
+    则引入`org`可以让我们这样书写`org.example.Pack1`,
+
+    引入`org.example`可以写成`example.Pack1`。
+
+25. `for`循环是否OK ==本次讨论==
+
+26. 类型转换提供方法:
+
+当一个类`SomeClass`已经写完后，如果不想修改原类，并让`SomeClass(any obj)`不失效，可以由写一个`cast`提供方法。其实相当于在新类中加入一个方法，然后把所有的`SomeClass(any obj)`改成类似于`inst.toSomeClass()`这种
+
+```c++
+class int
+{
+    // Some code...
+    public cast any;    // allow any cast
+    // You can also write "public <FromType extends AClass> cast FromType;" to allow only
+}
+
+class Test
+{
+    int data;
+    // some code
+    
+    cast int
+    {
+        return self.data;
+    }
+    
+    cast float return float(self.data); // 如果 float 没有这种构造器，cast 无效。这样可以避免出现安全性问题
+                                        // 其实这个感觉就是个语法糖
+}
+
+void main()
+{
+    int a = 10;
+    Test b = Test(10);
+    print(a + int(b));    // 打印出 20
+    print(1.0 + float(b));    // 打印出 20.0
+}
+```
 
