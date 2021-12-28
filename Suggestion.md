@@ -278,7 +278,10 @@ void main()
     int a = 10;
     Test b = Test(10);
     print(a + int(b));    // 打印出 20
-    print(1.0 + float(b));    // 打印出 20.0
+    print(1.0 + float(b));    // 打印出 11.0
 }
 ```
 
+27. Python里的for和while可以加上else子句，但这个else子句表示的是“如果循环没被break，就执行else内的代码”，感觉可读性貌似不是很高。有没有办法找到两个词，代表for/while循环**正常执行完**和**被break**的情况。
+
+* 想到了一个不好的主意，模仿try/catch，但感觉这个catch有点不恰当…
