@@ -32,5 +32,36 @@ function void test() { }
 function void test(int a) { }
 ```
 
+* 学学rust的错误报告
 
+```
+$ cesno param_state_check_unpass_example.ces --detailed-error-report
+
+Error occured at 01.03.2022 09:26:38 (UTC +08:00).
+ParamStateError: -2 is not eligible for parameter state "x >= 0"
+
+~/cesno/param_state_check_unpass_example.ces
+------ main function -------------------------------------------
+    |
+  9 |  my_sqrt(double(input()));
+    |          ^^^^^^^^^^^^^^^ Required param x that "x >= 0".
+    |                          Got -2.
+----------------------------------------------------------------
+ 
+Detailed Report for ParamStateError:
+  The parameter for function double my_sqrt(double) has parameter restriction,
+  however the input parameter does not fulfill it.
+
+  ~/cesno/param_state_check_unpass_example.ces
+  ------ my_sqrt definition --------------------------------------
+     |
+   1 |  function my_sqrt(x: x >= 0) { return sqrt(x); }
+     |                      ------ Param state required here
+  ----------------------------------------------------------------
+ 
+  Possible solution:
+     Value is received by input() function. Change the input value may solve this problem.
+     try: replace line 1 at test.main() to the following statement:
+         my_sqrt(double(input("Input one x (double) that satisfy \"x >= 0\": ")));
+```
 

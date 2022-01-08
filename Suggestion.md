@@ -239,11 +239,15 @@ a = 20;
 
     `public inline method int f(int x)`
     
-24. 引入命名空间。比如假设某个两个包的名字是`org.example.Pack1`和`org.example.Pack2`: ==本次讨论==
+24. 引入命名空间。比如假设某个两个包的名字是`org.example.Pack1`和`org.example.Pack2`: ==已解决，这不就是import么==
 
     则引入`org`可以让我们这样书写`org.example.Pack1`,
 
     引入`org.example`可以写成`example.Pack1`。
+
+    ==但问题来了==，能否让引入的命名空间，再被外部引用它时，也提供给外部? 换句话说，B引入A，C引入B，那么可不可以允许某种情况，使C也可以相当于引入了A?
+
+    * rust告诉我们可以`public import`。
 
 25. `for`循环是否OK ==本次讨论==
 
@@ -255,7 +259,7 @@ a = 20;
 class int
 {
     // Some code...
-    public cast any;    // allow any cast
+    // public cast;    // allow any cast
     // You can also write "public <FromType extends AClass> cast FromType;" to allow only
 }
 
@@ -284,4 +288,18 @@ void main()
 
 27. Python里的for和while可以加上else子句，但这个else子句表示的是“如果循环没被break，就执行else内的代码”，感觉可读性貌似不是很高。有没有办法找到两个词，代表for/while循环**正常执行完**和**被break**的情况。
 
-* 想到了一个不好的主意，模仿try/catch，但感觉这个catch有点不恰当…
+* 想到了一个不好的主意，模仿try/catch，但感觉这个catch有点不恰当… ==Abort==
+* `for`...`then`...`else`? ==To be discussed==
+
+```sql
+for i in range(10) { print("I will break"); break; }
+then { print("normal end"); }
+else { print("be break-ed"); }
+```
+
+
+
+28. for循环的break。因为for循环本身也可以有返回值，但Cesno采用**break+标识符**可以break掉外层循环，没法用break。
+
+* 一个方案，采用`break outer_loop_iden return 3`这样的形式。==`return`有歧义==
+* `break outer_loop_iden with 3`。`eval`相当于break with value。

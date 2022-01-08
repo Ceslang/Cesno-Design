@@ -28,9 +28,13 @@
 
 **函数签名**: `method <RetContainerType> RetContainerType<EleType> slice(int start=0, int end, RetContainerType into: Container.type&into.type.constructor.check(MappedType)=self.type)`
 
+## `get`方法
+
+**用途**: 返回数组
+
 ## `fill`方法 ==链式返回==
 
-**用途**: 将数组中一段区域填充指定值。如果指定一个可迭代容器，则循环地填充。
+**用途**: 将数组中一段区域填充指定值。如果指定一个可迭代容器，则可指定**循环地填充**或**只按位填充**。
 
 **参照**: 多数情况下，建议使用更为方便的[`[]`运算符](#operator_bracket)。
 
@@ -181,9 +185,9 @@ print(a)    // 输出 [1, 2, 1, 2, 1, 2]
 
    从数组中以下标形式，取出第n个特定的元素。比如从`x`数组中取出第二个元素，就可以书写成`x[2]`。
 
-2. `[range r]` returns `array<ref EleType>`
+2. `[range r]` returns `array<ptr EleType>`
 
    从数组中以下标形式，取出特定范围的一段。比如从`x`数组中取出从第一个(包含)到第三个(不含)元素，就可以这样书写`x[1..3]`。
 
-3. `[any... args: int|range]` returns `array<ref EleType>`
+3. `[any... args: int|range]` returns `array<ptr EleType>`
 

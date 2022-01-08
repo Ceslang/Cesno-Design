@@ -26,15 +26,21 @@
 
 ## `int`
 
-**简介**: 整数型，类似于C++或Java的`int`，长32位，范围为-2147483648至2147483647。
+**简介**: (中)整数型，类似于C++或Java的`int`，长32位，范围为-2147483648至2147483647。
 
-**定义**: `type int = cesno.type.int<32>`
+**定义**: `type int = cesno.type.integer<32>`
+
+## `long`
+
+**简介**: 长整数型，类似于C++或Java的`long`，长64位，范围为-18446744073709551616至18446744073709551615。
+
+**定义**: `type long = cesno.type.integer<64>`
 
 ## `float`
 
 **简介**: 浮点型，类似于C++或Java的`double`，双精度。
 
-**定义**: `type float = cesno.type.float<64>`
+**定义**: `type float = cesno.type.fltdeci<64>`
 
 ## `bool`
 
@@ -91,8 +97,24 @@ print(2 ^ 16 - 1, target=ostream(file("./test.txt", mode=#write)));
 
 ## `exit`函数
 
-**用途**: 终止程序执行。
+**用途**: 强制终止程序执行，不做任何收尾工作。Cesno会在控制台报告一条警告信息，来表示这个程序并非正常退出。
 
-**注意**: 在程序运行中任意停止程序运行可能会导致意想不到的结果，包括但不限于 *数据读写失误*、*运算结果丢失*、*干扰相关程序运行* 等意想不到的结果。强烈建议**不要在应该书写`return`语句的地方使用`exit()`代替**。
+**注意**: 在程序运行之时，强制地停止程序可能会导致意想不到的结果，包括但不限于 *数据读写失误*、*运算结果丢失*、*干扰相关程序运行* 等意想不到的结果。强烈建议**<span style="color: #e60033">不要</span>在应该书写`return`语句的地方使用`exit()`代替**。
 
-**函数签名**: `never exit(/, )`
+**函数签名**: `never exit()`
+
+
+
+## `random`函数
+
+**用途**: 生成一个在$[\mathtt{start},\mathtt{end})$之间的`float`型的随机数。
+
+**注意**: 若想要生成整数，请参考[`randint`函数](#randint函数)。
+
+**函数签名**: `float random(float start=0, float end=1, enum mode=#normal)`
+
+
+
+## `randint`函数
+
+**用途**: 生成一个在指定范围内的`int`型的随机数。

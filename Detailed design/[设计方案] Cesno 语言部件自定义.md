@@ -68,6 +68,31 @@ void main() {
 
 ## 从**宏**到**语言部件**
 
+在Cesno中，每当你写下诸如`TYPE_NAME IDENTIFIER;`时，你就定义了一个类型为`TYPE_NAME`的，名为`IDENTIFIER`的变量。==我为什么在这里写了这句==
+
+
+
 语言部件的使用
 ================
+
+语言部件可以嵌套。
+
+在Cesno的每一个非空语句中，必定有一个语言部件，来给出这个语句的作用。
+
+### eval关键字
+
+eval可以使一个语言部件立即被评价成一个值。当在语言部件的**定义**或是**使用**中，写下诸如`eval VALUE`的句子时，该语言部件会被视作`VALUE`，交给更外层的代码。因为eval会使得该部件被立即评价(就像对于函数而言的`return`)，所以在同一个层级，并在eval语句后的语句，无法被执行到。
+
+在下面的例子中，逻辑判断块(包含`if`和`else`)可以在结束后，被评价成一个值。注意，在eval之后的同级语句，并不会被执行。
+
+```python
+int x = int(input("Input one int: "));
+int y = if (x > 0)
+        {
+            print("x is bigger than 0");
+            eval 1;
+            print("I am unreachable code");
+        }
+        else { eval 0; };
+```
 

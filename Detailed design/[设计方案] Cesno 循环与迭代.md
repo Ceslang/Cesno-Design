@@ -153,7 +153,36 @@ for (var a in [1, "2", 4]) (var b in ["6", 10])
 
 # 高级技巧
 
-## else子句
+## then子句和else子句
+
+循环结束存在着两种状况(无异常发生时)，一是**所有循环指示器正常运行完**(正常终了)，二是**循环被break指令强制终止**(流程停止)。此时，可以在for循环后附加then或else子句，来为这些特殊情况做处理。当循环**正常终了**时，then子句会被执行；如果循环**流程停止**，else子句会被执行。
+
+```c++
+try for (int i = 0; i < 10; i++)
+{
+    if (int(input()) == 0) { break; }
+}
+then
+{
+    print("No number is 0.");
+}
+else
+{
+    print("This number is 0.");
+}
+catch (NumberFormatError e)
+{
+    e.printDetail();
+}
+```
+
+```c++
+int a = try { loop { int(input("a: ")); } } catch (Error e) { print("Input again"); };
+int b = try 
+            loop int(input("b: "));
+        catch (Error e)
+            print("Input again");
+```
 
 
 
@@ -162,6 +191,25 @@ for (var a in [1, "2", 4]) (var b in ["6", 10])
 ## 容器推导式
 
 类似于python，Cesno也有可以快速生成容器的**容器推导式**。
+
+容器推导式字面量的语法是
+
+```
+literal (#operand)
+{
+    ($bracket body) => (
+        $expression summon,
+        $keyword.cesno.for for_keywd,
+        $iteration.indicator... indicators: $len > 0 {
+            $if ($len == 1) { $self.can_without_surrounding = $true; }
+        }
+     )
+}
+```
+
+
+
+
 
 ```python
 int[] a = [i * 2 for (int i in range(4))];    //# 将生成 [0, 2, 4, 6]
