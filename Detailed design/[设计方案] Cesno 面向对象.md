@@ -50,7 +50,7 @@ class Test
 {
     int x;
     
-    Test operator+(int y) {this.x += y; return this;}
+    Test operator+(int y) { this.x += y; return this; }
 }
 
 void main()

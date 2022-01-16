@@ -202,3 +202,5 @@ delete a, b;
 object x = 10;
 delete x;    // 正确，会释放掉 int 大小的空间，并删除 x 的声明
 ```
+
+在每一个变量离开作用域时，都会被自动地delete。

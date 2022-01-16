@@ -111,7 +111,7 @@ print(2 ^ 16 - 1, target=ostream(file("./test.txt", mode=#write)));
 
 **注意**: 若想要生成整数，请参考[`randint`函数](#randint函数)。
 
-**函数签名**: `float random(float start=0, float end=1, enum mode=#normal)`
+**函数签名**: `float random(float start=0.0, float end=1.0, enum mode=#normal)`
 
 
 
