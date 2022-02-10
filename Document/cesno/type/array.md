@@ -26,7 +26,7 @@
 
 **参照**: 多数情况下，建议使用更为方便的[`[]`运算符](#operator_bracket)。
 
-**函数签名**: `method <RetContainerType> RetContainerType<EleType> slice(int start=0, int end, RetContainerType into: Container.type&into.type.constructor.check(MappedType)=self.type)`
+**函数签名**: `method <RetContainerType> RetContainerType<EleType> slice(int start=0, int end, RetContainerType into=self.type) with into: Container&into.type.constructor.check(MappedType)`
 
 ## `get`方法
 
@@ -88,7 +88,7 @@ print(a.map(e -> 2 * e, range()));    // 输出 [2, 3, 4]
 
 * `reducer`: `function<(EleType|FuncRetType, EleType), FuncRetType>`
 
-接受一个操作，用于归约地(依次地)应用于数组的每个元素。这个操作**必须接受**两个类型为`EleType`或`FuncRetType`的参数，并且返回一个类型为`FuncRetType`的参数
+接受一个操作，用于归约地(依次地)应用于数组的每个元素。这个操作**必须接受**两个类型为`EleType`的参数；或一个是`EleType`，另一个是`FuncRetType`的参数。它们的操作返回值类型为`FuncRetType`。
 
 这个操作(`reducer`)可以将数组本身存储的数据的类型，在计算时发生改变(比如从`EleType`改变至新类型`FuncRetType`)，但必须保证改变后的类型，同样能被该操作(`reducer`)进行运算(`FuncRetType`可以被`reducer`作为接受值的类型)。
 

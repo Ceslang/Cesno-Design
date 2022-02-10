@@ -18,7 +18,7 @@
 
 ## 函数的定义
 
-函数定义以`function`关键字开始，加上**返回值类型**、**函数名**以及**参数列表**构成。如下:
+完整的函数定义以`function`关键字开始，加上**返回值类型**、**函数名**以及**参数列表**构成。如下:
 
 ```typescript
 function return_type func_name(param_type param_1, param_type param_2)
@@ -37,9 +37,32 @@ function int plusOne(int x)
 
 函数也是一种数据类型。因此，可以像这样声明一个函数。
 
-```typescript
-function<(number, number), number> add = (x, y) => { return x + y; };
-```
+<div
+    style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em; font-size: 14.5px;">
+    <span style="color: #9ed44c; font-weight: bold;">function</span>&lt;(<span
+        style="color: #9ed44c; font-weight: bold;">number</span>, <span
+        style="color: #9ed44c; font-weight: bold;">number</span>), <span
+        style="color: #9ed44c; font-weight: bold;">number</span>&gt;
+    <span style="color: #2ca9e1;">sumTwoNumber1</span> <span style="color: #a59aca; font-weight: bold;">=</span>
+    <span style="color: #0094c8; font-weight: bold;">function</span>(<span style="color: #e0a37e">left</span>, <span
+        style="color: #e0a37e">right</span>) <br>{ <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #bc64a4; font-weight: bold;">return</span>
+    <span style="color: #e0a37e">left</span> <span style="color: #a59aca; font-weight: bold;">+</span> <span
+        style="color: #e0a37e">right</span> ; <br> }; <br> <br>
+    <span style="color: #9ed44c; font-weight: bold;">function</span>&lt;(<span
+        style="color: #9ed44c; font-weight: bold;">number</span>, <span
+        style="color: #9ed44c; font-weight: bold;">number</span>), <span
+        style="color: #9ed44c; font-weight: bold;">number</span>&gt;
+    <span style="color: #2ca9e1;">sumTwoNumber2</span> <span style="color: #a59aca; font-weight: bold;">=</span> <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;(<span style="color: #e0a37e">left</span>, <span style="color: #e0a37e">right</span>)
+    <span style="color: #0094c8; font-weight: bold;">-></span> { <span
+        style="color: #bc64a4; font-weight: bold;">return</span>
+    <span style="color: #e0a37e">left</span> <span style="color: #a59aca; font-weight: bold;">+</span> <span
+        style="color: #e0a37e">right</span> ; } ;
+</div>
+
+
+
 
 等号右半部分可能现在看起来有些令人费解。它是一个**匿名函数**，将在本页面之后的部分被讨论。现在只需记住这个**匿名函数**也是一个**函数**即可。
 
@@ -63,27 +86,50 @@ printx = (any... args, string sep=" ", ostream target=stdout) -> print(args, sep
 
 观察上面的函数，你会发现除了`end`参数被修改了以外，其余参数和`print`保持一致。这时，我们可以采取`where`关键字来简化我们的工作。
 
-```rust
-printx = print where end="";
+```typescript
+printx = print with end="";
 ```
 
 也可以同理制作一个打印到标准错误的`printerr`函数
 
-```rust
-printerr = print where target=stderr;
+```typescript
+printerr = print with target=stderr;
 ```
 
 
 # 函数做参数
 
-因为函数也是一种
+因为函数也是一种数据，所以也可以作为别的函数的参数传入。
 
 
+# 函数高级技巧
 
+## 省略返回值类型
 
-# 参数高级技巧
+在定义函数时，可以省略返回值的类型，并由Cesno去推断。
 
-## 默认参数
+### 当函数不返回值时
+
+当一个函数没有`return`语句时，Cesno会推断返回值是`void`。例如这个函数:
+
+<div
+    style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em; font-size: 14.5px;">
+    <span style="color: #0094c8; font-weight: bold;">function</span> <span
+        style="color: #2ca9e1;">printSomething</span>() <br>
+    {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #2ca9e1;">print</span>("<span style="color: #98623C">Some content to
+        display</span>") ; <br>
+    }
+</div>
+### 当函数有返回值时
+
+当有明确返回值类型时，Cesno会自动推断类型。当函数包含流程控制语句时，Cesno会认为所有<u>非异常结束</u>的流程都具有返回值，并取**联合类型**作为返回。
+
+## 省略参数类型
+
+当使用动态类型风格编程时，可以省略参数的类型`any`，像这样书写`function f(a) { a.someMethod() ; }`。
+
+## 参数默认值
 
 使用默认值的参数应该**全部位于**必须传入的参数**之后**。
 

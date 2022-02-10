@@ -50,7 +50,10 @@
 <span style="color: #bc64a4; font-weight: bold">else</span> <b>{</b> <span style="color: #c5c56a;">code_segment</span> <b>}</b>
 </div>
 
-### 可以处理多种条件的if和elif语句
+### <div style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em">
+    <span style="color: #2ca9e1">input</span>();
+    <span></span>
+</div>
 
 ### if结构的语法
 
@@ -70,13 +73,13 @@
 * 为了添加一个处理分支，首先写出期望的a的值；如有多个期望值，可用逗号隔开(如有歧义，可加括号解决)。其次，写出双箭头符号`=>`，再写一个代码块。
   * 小提示: 单独的一个字符串或是数字等，都是一个语句；而当代码块只有一个语句时，多半可以省略环绕的大括号。所以有些情况，可以直接省去书写大括号。
   * 双箭头符号的意思是“扩展”或“替换”，拥有一些更加接近元编程的用法。请不要和单箭头符号(多半代表闭包)混淆。
-* match结构有评价值，为其执行的代码块的评价值
+* match结构有评价值，为其执行的代码块的评价值。
 
 ### 利用match结构
 
 输入一个整数，如果是4，则给变量s赋值字符串"it is four"，1或3则为"it is one or three"，其余情况则赋值为"others"。
 
-<div style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em">
+<div style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em">
     <span style="color: #9ed44c"><b>string</b></span> <span style="color: #f39800">s</span>
     <span style="color: #A59ACA; font-weight: bolder;">=</span>
     <span style="color: #bc64a4; font-weight: bold">match</span>
@@ -91,9 +94,6 @@
     "<span style="color: #98623C">others</span>" ;<br>
     };
 </div>
-
-
-
 
 
 ### match结构的语法

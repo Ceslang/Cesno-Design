@@ -195,7 +195,7 @@ int b = try
 容器推导式字面量的语法是
 
 ```
-literal (#operand)
+literal operand ContainerExpression
 {
     ($bracket body) => (
         $expression summon,
@@ -203,7 +203,7 @@ literal (#operand)
         $iteration.indicator... indicators: $len > 0 {
             $if ($len == 1) { $self.can_without_surrounding = $true; }
         }
-     )
+    )
 }
 ```
 

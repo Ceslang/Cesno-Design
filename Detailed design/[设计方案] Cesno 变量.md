@@ -179,7 +179,7 @@ void main()
 ```typescript
 var x = 3;  // 此时，x的类型由字面量 3 推导为 int 型
 x += 7;     // x现在等于10，这种写法正确的
-x = "str";  // x现在为 string 型，由你代入的值 "str" 推导而来
+x = "str";  // x现在为 string 型，由代入的值 "str" 推导而来
 x = 1 / x;  // 这会报错。Cesno在此时能确定 x 在这里就是 string 型，
             // 而除号不适用于 int 与 string 一起运算。
             // 但如果程序流程包含了选择，Cesno便不能确定采用动态类型的变量的具体类型，

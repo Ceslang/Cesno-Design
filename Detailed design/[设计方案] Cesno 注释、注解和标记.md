@@ -51,20 +51,32 @@ print(a);
 
 比如，现有如下一段函数，它的作用是计算两个数字的和:
 
-```typescript
-/**
- * Calculate two number's add.
- * 
- * @constraint(left, right) Must be a number, which have defined operator plus
- * @return                  The sum of left and right
- */
-function lradd(any left: number, any right: number)
-{
-    return left + right;
-}
-```
+<div style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em; font-size: 14.5px;">
+    <span style="color: #b3ada0">/**<br>&nbsp;* Calculate two number's add. <br>&nbsp;* This function is only for
+        demostration.<br>&nbsp;* It is not suggested to write &lt;i&gt;type information&lt;/i&gt; of arguments like
+        this.<br>&nbsp;* <br>&nbsp;*
+        <b>@constraint</b>(<span style="color: #e0a37e">left</span>, <span style="color: #e0a37e">right</span>) Must be
+        a number, which have defined operator plus<br>&nbsp;*
+<b>@return</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The
+        sum of left and right <br>&nbsp;*/</span> <br>
+    <span style="color: #0094c8; font-weight: bold;">function</span>
+    <span style="color: #2ca9e1;">sumTwoNumber</span>(<span style="color: #9ed44c; font-weight: bold;">any</span> <span
+        style="color: #e0a37e">left</span><b>:</b> <span style="color: #9ed44c; font-weight: bold;">number</span>, <span
+        style="color: #9ed44c; font-weight: bold;">any</span> <span style="color: #e0a37e">right</span><b>:</b> <span
+        style="color: #9ed44c; font-weight: bold;">number</span>) <br>{ <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #bc64a4; font-weight: bold;">return</span>
+    <span style="color: #e0a37e">left</span> <span style="color: #a59aca; font-weight: bold;">+</span> <span
+        style="color: #e0a37e">right</span>; <br> }
+</div>
 
-为了方便可能使用这个函数的人更好地调用它，书写这个函数的人
+
+为了方便可能使用这个函数的人更好地调用它，书写这个函数的人可以提供一段<u>说明性质的文字</u>于<u>文档注释</u>中。
+
+文档注释支持使用HTML标签，这样在导出或查看时，可以提供更多的样式。
+
+
+
+### 
 
 注释的妙用
 ----------------

@@ -48,7 +48,7 @@
 ```c++
 class Test
 {
-    int x;
+    public int x;
     
     Test operator+(int y) { this.x += y; return this; }
 }

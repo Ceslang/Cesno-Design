@@ -304,4 +304,5 @@ else { print("be break-ed"); }
 * 一个方案，采用`break outer_loop_iden return 3`这样的形式。==`return`有歧义==
 * `break outer_loop_iden with 3`。`eval`相当于break with value。
 
-29. 增加`where`关键字，用于防止泛型或者参数限制过长。
+29. 增加`where`关键字(或者叫`with`?)，用于防止泛型或者参数限制过长。
+29. 函数省略返回值类型时，使用自动推导类型；参数省略类型时，默认指定为`any`。
