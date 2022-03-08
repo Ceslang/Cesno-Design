@@ -274,6 +274,7 @@ class Test
     }
     
     cast float return float(self.data); // 如果 float 没有这种构造器，cast 无效。这样可以避免出现安全性问题
+    									// 可以参考rust的impl的规则，必须有一方在本仓库
                                         // 其实这个感觉就是个语法糖
 }
 
@@ -302,7 +303,45 @@ else { print("be break-ed"); }
 28. for循环的break。因为for循环本身也可以有返回值，但Cesno采用**break+标识符**可以break掉外层循环，没法用break。
 
 * 一个方案，采用`break outer_loop_iden return 3`这样的形式。==`return`有歧义==
-* `break outer_loop_iden with 3`。`eval`相当于break with value。
+* `break outer_loop_iden with 3`。`with`相当于下列语句 (`for`循环等被break时的评价值为 break前一个语句的评价值)。
+
+```c++
+VALUE;
+break outer_loop_iden;
+```
+
+
 
 29. 增加`where`关键字(或者叫`with`?)，用于防止泛型或者参数限制过长。
-29. 函数省略返回值类型时，使用自动推导类型；参数省略类型时，默认指定为`any`。
+
+29. 函数省略返回值类型时，使用自动推导类型；参数省略类型时，默认指定为`any`。当此时有参数限制时，会将<u>参数类型限制</u>作为参数的类型
+
+    方便的写法：`function(n: number, f: (int) -> int)`，此时`f`被推导成`function<int, int>`类型。
+
+29. 类型转换和多态关键字`as`: 视作
+
+* `object x = y`: 多态，包含动态绑定。
+
+* `object x = y as object`: `y`被看作一个`object`，无函数或方法动态绑定。
+
+32. 双问号操作符`??`判空: 是否是空值`null`、`undefined`，返回`bool` (空为`false`)。
+
+    `a ??: b`如果a为空 (`a?? == false`)，返回b。
+
+    三问号操作符`???`相比双问号操作符`??`，还包含零值`class.$zero`判断。如果任意一个被满足，则返回`false`。
+
+33. 接受函数作为参数可以简写成如下形式
+
+```typescript
+function deleteWhen((number index) -> bool f)
+{
+    
+}
+
+function deleteWhen_1(f: (number index) -> bool)
+```
+
+34. 类的属性和成员
+
+​	属性 (类似swift的*计算属性*): 应被设计成一个类中，只能被读取的值。`int length = () -> self.str.length ;`。该值只会在需要被计算时被计算，且每次都会更新。当只为一个属性设置了getter时，等同于这种形式。
+

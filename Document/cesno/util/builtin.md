@@ -66,7 +66,7 @@
 
 * `any... objs`
 
-接受任意类型的输入，并将这些类型转换为可供`ostream`输出的形式。一般地，当`target`接受默认输出流`stdout`时，`objs`中的元素将会被逐层转换成`string`。
+接受任意类型的输入，并将这些类型转换为可供`ostream`输出的字符串。一般地，当`target`接受默认输出流`stdout`时，`objs`中的元素将会被逐层转换成`string`。
 
 * `ostream target=stdout`
 

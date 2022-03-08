@@ -81,19 +81,19 @@ function int plusOne(int x)
 下面展示了如何自定义一个<u>不会换行的`print`函数</u>(我们可以叫它`printx`)。
 
 ```typescript
-printx = (any... args, string sep=" ", ostream target=stdout) -> print(args, sep, target, end="");
+let printx = (any... args, string sep=" ", ostream target=stdout) -> print(args, sep, target, end="");
 ```
 
 观察上面的函数，你会发现除了`end`参数被修改了以外，其余参数和`print`保持一致。这时，我们可以采取`where`关键字来简化我们的工作。
 
 ```typescript
-printx = print with end="";
+let printx = print with end="";
 ```
 
 也可以同理制作一个打印到标准错误的`printerr`函数
 
 ```typescript
-printerr = print with target=stderr;
+let printerr = print with target=stderr;
 ```
 
 
