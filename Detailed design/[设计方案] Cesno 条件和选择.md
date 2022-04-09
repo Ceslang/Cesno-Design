@@ -50,11 +50,6 @@
 <span style="color: #bc64a4; font-weight: bold">else</span> <b>{</b> <span style="color: #c5c56a;">code_segment</span> <b>}</b>
 </div>
 
-### <div style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em">
-    <span style="color: #2ca9e1">input</span>();
-    <span></span>
-</div>
-
 ### if结构的语法
 
 <div style="font-family: 'Consolas'; line-height: 1.4em;">
@@ -120,3 +115,4 @@
     </i><b>;</b> <br>
     <b>}</b>
 </div>
+注意，所有作为`result`的值，必须是一个`constexpr` (在编译时就可以确定值)。

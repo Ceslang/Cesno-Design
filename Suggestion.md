@@ -326,19 +326,20 @@ break outer_loop_iden;
 
 32. 双问号操作符`??`判空: 是否是空值`null`、`undefined`，返回`bool` (空为`false`)。
 
-    `a ??: b`如果a为空 (`a?? == false`)，返回b。
+    `a ??: b`如果a为空 (`a?? == false`)，返回b，即`(a??) ? a : b`。
 
     三问号操作符`???`相比双问号操作符`??`，还包含零值`class.$zero`判断。如果任意一个被满足，则返回`false`。
 
 33. 接受函数作为参数可以简写成如下形式
 
 ```typescript
-function deleteWhen((number index) -> bool f)
+function deleteWhen((number) -> bool f)
 {
     
 }
 
-function deleteWhen_1(f: (number index) -> bool)
+function deleteWhen_1(f: (number) > bool)
+function deleteWhen_2(f: (element: number) -> bool)
 ```
 
 34. 类的属性和成员
