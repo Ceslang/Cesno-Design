@@ -12,15 +12,17 @@
 
 ## std相关
 
-* `istream stdin = runtime.env.input_stream`
+* `const istream stdin = runtime.env.input_stream`
 
 **用途**: 接受来自目前运行环境的标准输入。
 
-* `ostream stdout = runtime.env.output_stream`
-* `iostream stdio = runtime.env.io_stream`
-* `ostream stderr = runtime.env.error_output`
+* `const ostream stdout = runtime.env.output_stream`
+* `const iostream stdio = runtime.env.io_stream`
+* `const ostream stderr = runtime.env.error_output`
 
+## 数学相关
 
+* `const pi = 3.141592653589793238`
 
 # 类型列表
 
@@ -89,7 +91,16 @@ print("Hallo Walt.");
 print(2 ^ 16 - 1, target=ostream(file("./test.txt", mode=#write)));
 ```
 
+## `input`函数
 
+**用途**: 打印提示，并以字符串的形式接受用户输入。
+
+**重载**:
+
+1. `string prompt=""` returns `string`
+2. `string prompt="", /, check: (input_str: string) -> bool, on_fail: InputFailAction|(fail_str: string) -> any = #abort` return `string`
+
+   `enum InputFailAction`: `#abort`, `#redo(string|function)`, `#rerun(string)`.
 
 ## `sort`函数
 
@@ -97,7 +108,7 @@ print(2 ^ 16 - 1, target=ostream(file("./test.txt", mode=#write)));
 
 ## `exit`函数
 
-**用途**: 强制终止程序执行，不做任何收尾工作。Cesno会在控制台报告一条警告信息，来表示这个程序并非正常退出。
+**用途**: 强制终止程序执行，不做任何收尾工作。退出前，Cesno会在控制台报告一条警告信息，来表示这个程序并非正常退出。
 
 **注意**: 在程序运行之时，强制地停止程序可能会导致意想不到的结果，包括但不限于 *数据读写失误*、*运算结果丢失*、*干扰相关程序运行* 等意想不到的结果。强烈建议**<span style="color: #e60033">不要</span>在应该书写`return`语句的地方使用`exit()`代替**。
 
@@ -109,9 +120,9 @@ print(2 ^ 16 - 1, target=ostream(file("./test.txt", mode=#write)));
 
 **用途**: 生成一个在$[\mathtt{start},\mathtt{end})$之间的`float`型的随机数。
 
-**注意**: 若想要生成整数，请参考[`randint`函数](#randint函数)。
+**注意**: 若想要生成整数，请参考[`randint`函数](#randint函数)。如果想使函数改变默认是否包含两端的设定，可以指名指定。
 
-**函数签名**: `float random(float start=0.0, float end=1.0, enum mode=#normal)`
+**函数签名**: `float random(float start=0.0, float end=1.0, enum mode=#normal, /, bool contain_start=true, bool contain_end=false)`
 
 
 

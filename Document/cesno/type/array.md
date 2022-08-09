@@ -16,7 +16,7 @@
 
 ## 构造器
 
-
+#### `constructor(EleType... elems, /, int capacity)`
 
 ## 函数
 
@@ -26,7 +26,7 @@
 
 **参照**: 多数情况下，建议使用更为方便的[`[]`运算符](#operator_bracket)。
 
-**函数签名**: `method <RetContainerType> RetContainerType<EleType> slice(int start=0, int end, RetContainerType into=self.type) with into: Container&into.type.constructor.check(MappedType)`
+**函数签名**: `method EleType[] slice(int start=0, int end)`
 
 ## `get`方法
 
@@ -49,7 +49,7 @@
 method <MappedType, RetContainerType> RetContainerType<MappedType>
 map(function<EleType, MappedType> mapper, 
     int from=0, int before=len(self),
-    RetContainerType into: Container.type&into.type.constructor.check(MappedType)=self.type)
+    RetContainerType into: Container = self.type)
 ```
 
 **参数列表**: 
@@ -74,6 +74,46 @@ print(a.map(e -> e + 1));    // 输出 [2, 3, 4]
 print(a.map(e -> 2 * e, range()));    // 输出 [2, 3, 4]
 ```
 
+
+
+## `filter`方法
+
+<div
+    style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em; font-size: 14.5px;">
+    <span style="color: #0094c8; font-weight: bold;">method</span> <span style="color: #00a381; font-weight: bold;">EleType</span><span style="color: #9ed44c; font-weight: bold;">[]</span> <span style="color: #2ca9e1;">filter</span>(<span style="color: #e0a37e">rule</span>: (<span style="color: #00a381; font-weight: bold;">EleType</span> <span style="color: #e0a37e">e</span>, <span style="color: #9ed44c; font-weight: bold;">integer</span> <span style="color: #e0a37e">index<span style="color: #9ed44c; font-weight: bold;">?</span></span>) <span style="color: #0094c8; font-weight: bold;">-></span> <span style="color: #9ed44c; font-weight: bold;">bool</span>) ;
+</div>
+
+## `indexOfFirst`方法
+
+<div
+    style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em; font-size: 14.5px;">
+    <span style="color: #0094c8; font-weight: bold;">method</span> <span style="color: #9ed44c; font-weight: bold;">int</span> <span style="color: #2ca9e1;">indexOfFirst</span>(<span style="color: #e0a37e">element</span>: <span style="color: #00a381; font-weight: bold;">EleType</span>) ;
+</div>
+
+**用途**: 返回数组中第一个`element`的下标。
+
+<div
+    style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em; font-size: 14.5px;">
+    <span style="color: #0094c8; font-weight: bold;">method</span> <span style="color: #9ed44c; font-weight: bold;">int</span> <span style="color: #2ca9e1;">indexOfFirst</span>(<span style="color: #e0a37e">rule</span>: (<span style="color: #00a381; font-weight: bold;">EleType</span> <span style="color: #e0a37e">e</span>, <span style="color: #9ed44c; font-weight: bold;">integer</span> <span style="color: #e0a37e">index?</span>) <span style="color: #0094c8; font-weight: bold;">-></span> <span style="color: #9ed44c; font-weight: bold;">bool</span>) ;
+</div>
+
+**用途**: 返回数组中第一个满足`rule`的元素的下标 (即`rule`判断为真)。
+
+## `indexOfAll`方法
+
+<div
+    style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em; font-size: 14.5px;">
+    <span style="color: #0094c8; font-weight: bold;">method</span> <span style="color: #9ed44c; font-weight: bold;">int[]</span> <span style="color: #2ca9e1;">indexOfAll</span>(<span style="color: #e0a37e">element</span>: <span style="color: #00a381; font-weight: bold;">EleType</span>) ;
+</div>
+
+**用途**: 返回数组中所有`element`的下标。
+
+<div
+    style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em; font-size: 14.5px;">
+    <span style="color: #0094c8; font-weight: bold;">method</span> <span style="color: #9ed44c; font-weight: bold;">int[]</span> <span style="color: #2ca9e1;">indexOfAll</span>(<span style="color: #e0a37e">rule</span>: (<span style="color: #00a381; font-weight: bold;">EleType</span> <span style="color: #e0a37e">e</span>, <span style="color: #9ed44c; font-weight: bold;">integer</span> <span style="color: #e0a37e">index?</span>) <span style="color: #0094c8; font-weight: bold;">-></span> <span style="color: #9ed44c; font-weight: bold;">bool</span>) ;
+</div>
+
+**用途**: 返回数组中所有满足`rule`的元素的下标 (即`rule`判断为真)。
 
 
 ## `reduce`方法

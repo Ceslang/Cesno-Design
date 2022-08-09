@@ -346,3 +346,10 @@ function deleteWhen_2(f: (element: number) -> bool)
 
 ​	属性 (类似swift的*计算属性*): 应被设计成一个类中，只能被读取的值。`int length = () -> self.str.length ;`。该值只会在需要被计算时被计算，且每次都会更新。当只为一个属性设置了getter时，等同于这种形式。
 
+35. 定义类型
+
+​	`struct` 结构类型
+
+​	`class` 名义类型
+
+​	`proto 原型链继承

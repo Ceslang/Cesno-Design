@@ -80,15 +80,16 @@
     <span style="color: #bc64a4; font-weight: bold">match</span>
     (<span style="color: #9ed44c; font-weight: bold">int</span>(<span style="color: #2ca9e1">input</span>())) { <br>
     &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #E95295">4</span>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #bc64a4; font-weight: bold">=></b>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #c4a3bf; font-weight: bold">=></b>
     "<span style="color: #98623C">it is four</span>" ;<br>
     &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #E95295">1</span>, <span style="color: #E95295">3</span>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #bc64a4;">=></b>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #c4a3bf;">=></b>
     "<span style="color: #98623C">it is one or three</span>" ;<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #bc64a4; font-weight: bold;">otherwise => </span>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #bc64a4; font-weight: bold;">otherwise</span> <b style="color: #c4a3bf; font-weight: bold">=></b>
     "<span style="color: #98623C">others</span>" ;<br>
     };
 </div>
+
 
 
 ### match结构的语法
@@ -110,9 +111,10 @@
     &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c5c56a;">result_1<i><span style="color: #000"><b>, </b></span> result_2<span style="color: #000"><b>, ..., </b></span>result_n</span></i>
     <b style="color: #bc64a4; font-weight: bold">=></b> </b><span style="color: #c5c56a;">value_or_code_seg_if_statement_is_in_result_1_to_n</span> <b>;</b> <br>
     <i>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #bc64a4; font-weight: bold;">otherwise => </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #bc64a4; font-weight: bold;">otherwise</span> <b style="color: #c4a3bf; font-weight: bold">=></b>
         <span style="color: #c5c56a;">value_or_code_seg_if_statement_value_not_in_given_result</span>
     </i><b>;</b> <br>
     <b>}</b>
 </div>
+
 注意，所有作为`result`的值，必须是一个`constexpr` (在编译时就可以确定值)。

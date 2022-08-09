@@ -65,3 +65,27 @@ Detailed Report for ParamStateError:
          my_sqrt(double(input("Input one x (double) that satisfy \"x >= 0\": ")));
 ```
 
+* 快速生成列表的几种方式
+  * 分散运算符`...`。如果将要生成的是顺序数字或字符，可以像这样`...1..5`，将会生成`(1, 2, 3, 4, 5)`
+  * 列表推导式`[EXPR for (FOR_INST)...]`。比如`[string(i) for i in 1..5]`，，将会生成`("1", "2", "3", "4", "5")`
+
+## 约束后置表示`where`
+
+当对参数的约束过长时，可以在定义体大括号之前，用`where`统一表示。
+
+<div
+    style="font-family: 'Consolas'; line-height: 1.4em; color: #777; background-color: #FBFAF5; padding: 0.5em 1em; font-size: 14.5px;">
+    <span style="color: #0094c8; font-weight: bold;">function</span> &lt;<span
+        style="color: #9ed44c; font-weight: bold;">type</span> <span
+        style="color: #00a381; font-weight: bold;">OperandType</span>&gt;
+    <span style="color: #2ca9e1;">addTwoConst</span>(<span style="color: #00a381; font-weight: bold;">OprandType</span>
+    <span style="color: #e0a37e">a</span>, <span style="color: #00a381; font-weight: bold;">OprandType</span> <span
+        style="color: #e0a37e">b</span>)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #68be8d; font-weight: bold;">where</span> <span
+        style="color: #2ca9e1;">addTwoConst</span>: <span
+        style="color: #68be8d; font-weight: bold;">constexpr</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+        style="color: #00a381; font-weight: bold;">OperandType</span>: <span
+        style="color: #a7b446; font-weight: bold;">Addable</span><br>
+    { <span style="color: #bc64a4; font-weight: bold;">return</span> <span style="color: #e0a37e">a</span> <span
+        style="color: #a59aca; font-weight: bold;">+</span> <span style="color: #e0a37e">b</span> ; }
+</div>
